@@ -1,15 +1,24 @@
+<h3 class="text-center">pokedex region: hoenn</h3>
+<p class="text-center">
+  <a href="/pokemon">view my pokedex</a>
+</p>
+
 <div class="container">
-  <h1 class="text-center">The Original 151 Pokemon</h1>
-  <p class="text-center">
-    <a href="/pokemon">Favorites</a>
-  </p>
 
   <% pokemon.forEach(function(pokemon) { %>
     <div class="well">
-      <h2><%= pokemon.name %></h2>
+      <!-- credits to taylor schmidt for the slice advice to add pictures! -->
+      <% let url = pokemon.url %>
+      <% let pokeIndex = url.slice(34, url.length-1) %>
+
+      <img src="<%=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeIndex}.png`%>">
+      <h3><span class="no"><%= pokeIndex %></span><%= pokemon.name %></h3>
+      <a href="<%=`/pokemon/${pokemon.name}`%>">
+        <button class="data">pokedex</button>
+      </a>
       <form method="POST" action="/pokemon">
         <input hidden type="text" name="name" value="<%= pokemon.name %>">
-        <button class="btn btn-primary" type="submit">Add to Favorite Pokemon</button>
+        <button class="primary" type="submit">favorite</button>
       </form>
     </div>
   <% }); %>

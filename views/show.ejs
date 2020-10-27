@@ -1,0 +1,43 @@
+<div class="indexdata">
+<h2>no. <%= pokedata.id %>: <%= pokedata.name %></h1>
+<i><%= pokedata.types[0].type.name %> type pokemon</i>
+
+<div class="image">
+    <img src="<%= pokedata.sprites.front_default %>">
+</div>
+<i>
+height: <%= pokedata.height / 10 %> m<br>
+weight: <%= pokedata.weight /10 %> kg
+</i>
+
+<div class="details">
+    <div class="stats">
+        <ul><span class="bold">base stats</span>
+            <% let baseStats = pokedata.stats %>
+            <% baseStats.forEach(element=>{ %>
+                <li><%=element.stat.name%>: <%=element.base_stat%></li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="stats">
+        <ul><span class="bold">abilities</span>
+            <% let abilitiesArray = pokedata.abilities %>
+            <% abilitiesArray.forEach(element=>{ %>
+                <li><%=element.ability.name%></li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+<div class="extra">
+    <div class="stats">
+        <ul><span class="bold">game appearances</span>
+            <% let gameArray = pokedata.game_indices %>
+            <% gameArray.forEach(element=>{ %>
+                <li><%=element.version.name%></li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+</div>

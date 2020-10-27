@@ -1,0 +1,11 @@
+<div class="indexdata">
+    <h2>pokedex log</h1>
+
+        <div class="container">
+            <ul>
+                <% faves.forEach(pokemon=>{ %>
+                    <li><a href="<%=`/pokemon/${pokemon.name}`%>"><%= pokemon.name %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+</div>

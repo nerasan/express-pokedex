@@ -1,16 +1,36 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../models')
+const axios = require('axios'); 
 
 // GET /pokemon - return a page with favorited Pokemon
 router.get('/', function(req, res) {
   // TODO: Get all records from the DB and render to view
-  res.send('Render a page of favorites here');
+  db.pokemon.findAll()
+  .then(faves=>{
+    res.render('faves', {faves: faves})
+  })
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post('/', function(req, res) {
   // TODO: Get form data and add a new record to DB
-  res.send(req.body);
+  db.pokemon.create(req.body)
+  .then(createdFave=>{
+    console.log('favorite pokemon:', createdFave)
+    res.redirect('/pokemon')
+  })
+  // need to redirect back to favorites page after adding to faves
 });
+
+// GET /pokemon/:id - renders a show page with information about the pokemon with the corresponding row id
+router.get('/:id', function(req, res){
+  pokeIndex = req.params.id
+  axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeIndex}/`)
+  .then(response=>{
+    console.log(response.data.sprites.front_default)
+    res.render('show', {pokedata: response.data})
+  })
+})
 
 module.exports = router;
