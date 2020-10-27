@@ -1,11 +1,18 @@
 <div class="indexdata">
     <h2>pokedex log</h1>
-
-        <div class="container">
-            <ul>
-                <% faves.forEach(pokemon=>{ %>
-                    <li><a href="<%=`/pokemon/${pokemon.name}`%>"><%= pokemon.name %></a></li>
+        
+                <% faves.forEach(fave=>{ %>
+                    <div class="faves-container">
+                        <div class="faves">
+                            <%= fave.name %>
+                        </div>
+                        <div class="faves2">
+                            <a href="<%=`/pokemon/${fave.name}`%>"><button class="faves">view</button></a>
+                            <form method="DELETE" action="/pokemon">
+                                <input hidden type="text" name="name" value="<%= fave.name %>">
+                                <button class="faves" type="submit">remove</button>
+                            </form>
+                        </div>
+                    </div>
                 <% }) %>
-            </ul>
-        </div>
 </div>

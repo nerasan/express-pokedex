@@ -10,6 +10,14 @@ router.get('/', function(req, res) {
   .then(faves=>{
     res.render('faves', {faves: faves})
   })
+  let deletepkmn = req.query.name 
+  db.pokemon.destroy({
+    where: {
+      name: deletepkmn
+    }
+  }).then(()=>{
+    res.redirect('/pokemon')
+  })
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
@@ -32,5 +40,20 @@ router.get('/:id', function(req, res){
     res.render('show', {pokedata: response.data})
   })
 })
+
+// DESTROY /pokemon - delete a specific pokemon from the database
+
+// router.delete('/', function(req, res) {
+//   console.log(req.query.name)
+//   let deletepkmn = req.query.name
+//   db.pokemon.destroy({
+//     where: {
+//       name: deletepkmn
+//     }
+//   })
+//   .then(function(){
+//     res.redirect('/pokemon')
+//   })
+// })
 
 module.exports = router;
