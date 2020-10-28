@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
     res.render('faves', {faves: faves})
   })
   let deletepkmn = req.query.name 
+  console.log(deletepkmn)
   db.pokemon.destroy({
     where: {
       name: deletepkmn
@@ -31,6 +32,19 @@ router.post('/', function(req, res) {
   // need to redirect back to favorites page after adding to faves
 });
 
+// DESTROY /pokemon - delete a specific pokemon from the database
+// router.delete('/', function(req, res){
+//   let deletepkmn = req.query.name 
+//   console.log(deletepkmn)
+//   db.pokemon.destroy({
+//     where: {
+//       name: deletepkmn
+//     }
+//   }).then(()=>{
+//     res.redirect('/pokemon')
+//   })
+// })
+
 // GET /pokemon/:id - renders a show page with information about the pokemon with the corresponding row id
 router.get('/:id', function(req, res){
   pokeIndex = req.params.id
@@ -41,19 +55,5 @@ router.get('/:id', function(req, res){
   })
 })
 
-// DESTROY /pokemon - delete a specific pokemon from the database
-
-// router.delete('/', function(req, res) {
-//   console.log(req.query.name)
-//   let deletepkmn = req.query.name
-//   db.pokemon.destroy({
-//     where: {
-//       name: deletepkmn
-//     }
-//   })
-//   .then(function(){
-//     res.redirect('/pokemon')
-//   })
-// })
 
 module.exports = router;

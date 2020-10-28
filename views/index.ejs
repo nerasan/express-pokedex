@@ -4,14 +4,12 @@
 </p>
 
 <div class="container">
-
   <% pokemon.forEach(function(pokemon) { %>
     <div class="well">
       <!-- credits to taylor schmidt for the slice advice to add pictures! -->
       <% let url = pokemon.url %>
       <% let pokeIndex = url.slice(34, url.length-1) %>
-
-      <img src="<%=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeIndex}.png`%>">
+      <img src="<%=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/${pokeIndex}.png`%>">
       <h3><span class="no"><%= pokeIndex %></span><%= pokemon.name %></h3>
       <a href="<%=`/pokemon/${pokemon.name}`%>">
         <button class="data">pokedex</button>
