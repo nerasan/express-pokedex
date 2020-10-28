@@ -103,6 +103,25 @@ a:hover {
     justify-content: center;
 }
 
+.faves-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px 0;
+
+}
+
+.faves-name {
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 0;
+    width: 100px;
+}
+
+.faves-button {
+    display: flex;
+    justify-content: center;
+}
+
 .well {
     width: 20%;
     text-align: center;
